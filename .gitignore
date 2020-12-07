@@ -12,6 +12,10 @@ env/*
 #data/*
 !data/.keep
 
+# Etc.
+build/src/fetch.py
+
+
 # Build directory and logs
 build/src
 build/setup.py
