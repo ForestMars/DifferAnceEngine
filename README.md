@@ -40,6 +40,19 @@ Scalability of the computationally expensive parameter optimizations is not hand
 The pipe factory changes the convention of of naming things after their labels (ie.`make_pipeline`) in favour of naming them after the hash of their functors. This allows for their names to freely (and arbitrarily) change, while maintaining the integrity of the object itself that’s being passed.
 
 
+## BUILD
+
+TO build DifferAnce Engine for your architecture, run make build:
+
+```
+make build
+```
+
+This is an alias for `build-arch` which compiles from the source files (found in `lib/c`) to (the) executable objects (which are) found in `lib/ext`.)
+
+The included Makefile also supports options for `build-source` which creates the source code used by build-arch, and `build-local` which, intended for developers, skips the intermediate step and directly compiles the binaries for your local architecture.
+
+
 ## Install
 
 To install, source the included conda environment file. That should be all you need to do for a fully running DifferAnce Engine environment.
