@@ -8,14 +8,24 @@
 # cc -c -o dialog.o dialog.c
 #gc dialog.o -shared -o lib/models/dialog.so
 
-# Compile Time Domain.
-gcc -c -fPIC -I/usr/include/python3.8 -o kronos.o kronos.c
-gcc -shared -fPIC -I/usr/include/python3.8 -o kronos.so kronos.o
 
-# Compile Kronos
-gcc -c -fPIC -I/usr/include/python3.8 -o kronos.o lib/c/kronos.c
-gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/kronos.so kronos.o
+gcc -c -fPIC -I/usr/include/python3.8 -o estimators.o estimators.c
+gcc -shared -fPIC -I/usr/include/python3.8 -o estimators.so estimators.o
 
-# Compile Scheduler.
-gcc -c -fPIC -I/usr/include/python3.8 -o scheduler.o lib/c/scheduler.c
-gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/scheduler.so scheduler.o
+gcc -c -fPIC -I/usr/include/python3.8 -o models.o lib/c/models.c
+gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/models.so models.o
+
+gcc -c -fPIC -I/usr/include/python3.8 -o pipes.o lib/c/pipes.c
+gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/pipes.so pipes.o
+
+gcc -c -fPIC -I/usr/include/python3.8 -o scoring.o lib/c/scoring.c
+gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/scoring.so scoring.o
+
+gcc -c -fPIC -I/usr/include/python3.8 -o trans.o lib/c/trans.c
+gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/trans.so trans.o
+
+gcc -c -fPIC -I/usr/include/python3.8 -o tubular.o lib/c/tubular.c
+gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/tubular.so tubular.o
+
+gcc -c -fPIC -I/usr/include/python3.8 -o preprocessors.o lib/c/preprocessors.c
+gcc -shared -fPIC -I/usr/include/python3.8 -o lib/ext/preprocessors.so preprocessors.o

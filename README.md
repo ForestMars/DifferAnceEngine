@@ -11,11 +11,12 @@ An important design principle behind DAE is that classification inaccuracies ari
   * [How It Works](how-it-works)
   * [Build](#build)
   * [Install](#install)
-     * [Requirements](#requirements)
+      * [Requirements](#requirements)
   * [Deploy](#deploy)
   * [Run](#run)
   * [Example Domains](#example-domains)
-  * [Release Notes](#notes)    
+  * [Release Notes](#release-notes)
+      * [Known Issues](#known-issues)
   * [Contributing](#contributing)
     * [Feedback](#feedback)    
   * [License](#license)  
@@ -79,11 +80,15 @@ To get started with DiffEng, a well-known dataset with oneological data is inclu
 Finally, an experimental Wikipedia scraper is included in the `wikip/` sub-directory. (not built as wheel.) Using this tool you can download any data from Wikipedia to explore the capabilities of DifferAnce Engine.
 
 
-## Notes
+## Release Notes
 
 * Version 0.1
 
 * real time prediction (`dae predict [MODEL_ID`] is inherited from Timecube auto-regressive framework. Classification data is not "real time" -in the sense it's not time series data- however DAE is able to handle extremely high workloads with extremely low latency.
+
+### Known Issues
+
+* [Cython 0.29.14 and Py38 generates warnings for tp_print](https://github.com/cython/cython/issues/3474)
 
 
 ## Roadmap
