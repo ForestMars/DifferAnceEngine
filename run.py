@@ -66,8 +66,8 @@ if __name__ == '__main__':
 
             pipe = Pipe()
 
-            norm_pipes = normalize_feat_pipe(ffs)
             num_feats = tuple(ffs)
+            norm_pipes = normalize_feat_pipe(ffs)
             union = pipeline(num_feats, norm_pipes)
 
             # Add final estimator and learn fit.
