@@ -57,10 +57,6 @@ The included Makefile also supports options for `build-source` which creates the
 
 To install, source the included conda environment file. That should be all you need to do for a fully running DifferAnce Engine environment.
 
-### Notes on Requirements:
-* Cython: DAE builds all modules as Cython extensions, located in `lib/ext`
-* SWIG: There are a couple of libraries used that need a SWIG wrapper.
-
 
 ## Run
 
