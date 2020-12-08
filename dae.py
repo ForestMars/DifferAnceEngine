@@ -16,7 +16,7 @@ import common.etl
 from common.memo import memo
 from common import utils
 from common.utils import fopen
-from build.src.pipes import Pipe
+from lib.ext.pipes import Pipe
 
 from api.domain import Domain, get_domains
 

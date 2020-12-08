@@ -11,9 +11,9 @@ from sklearn.model_selection import train_test_split
 
 from common import get_args, utils
 from dae import *
-from build.src.estimators import Estimator
-from build.src.pipes import Pipe
-from build.src.scoring import Score, score_predict, save_score, load_report
+from lib.ext.estimators import Estimator
+from lib.ext.pipes import Pipe
+from lib.ext.scoring import Score, score_predict, save_score, load_report
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
