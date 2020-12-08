@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from common import get_args, utils
 from dae import *
 from lib.ext.estimators import Estimator
-from lib.ext.pipes import Pipe
+from lib.ext.pipes import Pipe, ClassifierPipes
 from lib.ext.scoring import Score, score_predict, save_score, load_report
 
 pd.set_option('display.max_columns', None)
@@ -71,7 +71,6 @@ if __name__ == '__main__':
             union = pipeline(num_feats, norm_pipes)
 
             # Add final estimator and learn fit.
-            from build.src.pipes import ClassifierPipes
             cls = ClassifierPipes()
             clf = pipe.chain_pipes([union, cls.clf(est)])
             clf.fit(X_train, y_train)
