@@ -52,7 +52,7 @@ if __name__ == '__main__':
     testset=testset.head(100)
     # @TODO: Announce how many candidates the search space contains.
 
-    for ffs in feat_space_gen(avail_feats):
+    for ffs in feature_space_generator(avail_feats):
         Est = Estimator()
 
         estimator = (next(Est))

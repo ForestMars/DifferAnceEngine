@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # dae.py - Generators for optimisation space and related functions for main execution.
 __version__ = '0.2'
-__all__ = ['_avail_feats', 'feat_space_gen', 'normalize_feat_pipe', 'pipeline', 'save_model', 'x_val']
+__all__ = ['_avail_feats', 'feature_space_generator', 'normalize_feat_pipe', 'pipeline', 'save_model', 'x_val']
 
 import itertools
 import os
@@ -16,7 +16,9 @@ import common.etl
 from common.memo import memo
 from common import utils
 from common.utils import fopen
+from lib.ext import features
 from lib.ext.pipes import Pipe
+
 
 from api.domain import Domain, get_domains
 
@@ -65,13 +67,7 @@ def _avail_feats():
             for feat in pipe:
                 pass
 
-    return [
-            'sen_len',
-            'count_commas',
-            'count_words',
-            'avg_word_len',
-            'not_stops',
-            ]
+    return features.available
 
 
 def feat_space_gen(avail_feats):
