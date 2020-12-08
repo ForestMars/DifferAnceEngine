@@ -20,9 +20,9 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.width', 1000) #YMMV
 
 
-SEED=49
+SEED=42
 TEST_SIZE=0.2
-cv=2
+cv=3
 
 DATA = 'data/'
 DOMAIN='hackles'
