@@ -109,6 +109,7 @@ Finally, an experimental Wikipedia scraper is included in the `wikip/` sub-direc
 
 * Move setup.py out of `build/src` intp `build`
 * Clean up domain logic & some residual hard coded constants
+* Currently the Docker image is built with the full transform module. Would be nicer if it only included the specific tranforms needed by the trained model.
 
 
 ## License
@@ -116,6 +117,6 @@ Finally, an experimental Wikipedia scraper is included in the `wikip/` sub-direc
 DifferAnce Engine is released under the Apache Software License.
 
 
-## Dictata
+## Dicata
 
 DifferAnce Engine is dedicated to Charles Babbage and Jacques Derrida, if that was not obvious.
