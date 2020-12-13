@@ -11,9 +11,16 @@ from sklearn.model_selection import train_test_split
 
 from common import get_args, utils
 from dae import *
+<<<<<<< HEAD
 from lib.ext.estimators import Estimator
 from lib.ext.pipes import Pipe, ClassifierPipes
 from lib.ext.scoring import Score, score_predict, save_score, load_report
+=======
+from build.src.estimators import Estimator
+from build.src.pipes import Pipe, ClassifierPipes
+from build.src.scoring import Score, score_predict, save_score, load_report
+
+>>>>>>> dev
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -30,9 +37,17 @@ DATA_DIR = DATA + DOMAIN
 TRAIN_TEST = '/train_test'
 TRAIN_TEST_SET = DATA_DIR + TRAIN_TEST
 
+DAE_MODE = 'predict_score'
+
+
+def dae_score_predict():
+    """ Score and predict full test set """
+    target_names = utils.get_dir_list(TRAIN_TEST_SET)
+    score = score_predict(model, testset)
+    save_score(report, model_id, est, len(dataset), len(testset), num_feats, cv, score, 'predict_score')
+
 
 if __name__ == '__main__':
-
 
     avail_feats = _avail_feats()
 
@@ -78,17 +93,18 @@ if __name__ == '__main__':
             model = clf
             model_id = save_model(clf)
 
-            ## Scoring
+            # move this into function
             scor = Score()
-            scores = load_report()
+
+            report = load_report()
+
             train_score = clf.score(X_train, y_train)
             test_score = clf.score(X_test, y_test)
             #scores = scor.store(model_id, est, len(dataset), len(testset), num_feats, cv, train_score, 'train_score')
             #scores = scor.store(model_id, est, len(dataset), len(testset), num_feats, cv, test_score, 'test_score')
-            target_names = utils.get_dir_list(TRAIN_TEST_SET)
-            score = score_predict(model, testset)
-            save_score(scores, model_id, est, len(dataset), len(testset), num_feats, cv, score, 'predict_score')
 
+            if DAE_MODE == 'predict_score':
+                dae_score_predict()
 
     # Ask, don't tell principle.
     #get report for domain- don't load here, have it loaded for you.

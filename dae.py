@@ -63,6 +63,7 @@ def _avail_feats():
 
     def _apply_feats():
         """ Enumerate available features which may be extracted from the dataset data """
+
         for pipe in avail_feat_pipes: # pipes can be feature pipes, for introducing gaussian derivatives.
             for feat in pipe:
                 pass
@@ -70,7 +71,7 @@ def _avail_feats():
     return features.available
 
 
-def feat_space_gen(avail_feats):
+def feature_space_generator(avail_feats):
     """ Feature subspace generator.
     """
     #feature_space = []
@@ -119,19 +120,23 @@ def pipeline(num_feats, norm_pipes):
 # Save trained model with gnerated ID.
 def save_model(model):
     dir = domain.path
-    timestamped_model_id = DOMAIN + '_' + str(int(time.time())) + '.pkl'
     domain_model_path = MODELS + '/' + DOMAIN + '/'
-    filepath = domain_model_path + timestamped_model_id
+    current_model = DOMAIN +  '.pkl'
+    timestamped_model = DOMAIN + '_' + str(int(time.time())) + '.pkl'
+    filepath = domain_model_path + timestamped_model
+
     #if utils.path_exists(domain_model_path + best_model):
     #    utils.rename_file(domain_model_path, update_model, timestamped_model) # This is mainly for running models.
+    #utils.rename_file(domain_model_path, timestamped_model, saved_model)
 
-    return timestamped_model_id
     with fopen(filepath, 'wb') as file:
         pickle.dump(model, file)
+    utils.path_alias(domain_model_path, timestamped_model, current_model)
+
     # Confirm model was saved.
     with open(filepath, 'rb') as file:
         saved_model = pickle.load(file)
-    return timestamped_model_id
+    return current_model
 
 
 def x_val():
