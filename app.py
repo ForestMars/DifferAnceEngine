@@ -46,9 +46,6 @@ def predict():
     return Response(resp, mimetype='text/xml')
 
 
-
-
-
-
 if __name__ == '__main__':
+        #app.run(host='0.0.0.0', port=FLASK_RUN_PORT, url_scheme='https')
         app.run(host='0.0.0.0', port=FLASK_RUN_PORT, debug=True)
