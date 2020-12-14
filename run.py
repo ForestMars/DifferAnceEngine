@@ -9,23 +9,18 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 #from autosklearn.experimental.askl2 import AutoSklearn2Classifier
 
-from common import get_args, utils
+from common import cli, utils
 from dae import *
-<<<<<<< HEAD
 from lib.ext.estimators import Estimator
 from lib.ext.pipes import Pipe, ClassifierPipes
 from lib.ext.scoring import Score, score_predict, save_score, load_report
-=======
-from build.src.estimators import Estimator
-from build.src.pipes import Pipe, ClassifierPipes
-from build.src.scoring import Score, score_predict, save_score, load_report
 
->>>>>>> dev
+
+args = cli.get_args(sys.argv)
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 pd.set_option('display.width', 1000) #YMMV
-
 
 SEED=42
 TEST_SIZE=0.2

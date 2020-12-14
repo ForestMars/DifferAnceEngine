@@ -109,6 +109,7 @@ Finally, an experimental Wikipedia scraper is included in the `wikip/` sub-direc
 
 * Move setup.py out of `build/src` intp `build`
 * Clean up domain logic & some residual hard coded constants
+* Docker factory which is currently a module, should be a proper factory class.
 * Currently the Docker image is built with the full transform module. Would be nicer if it only included the specific tranforms needed by the trained model.
 
 

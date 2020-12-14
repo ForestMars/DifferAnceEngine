@@ -1,14 +1,22 @@
-# dockerize_model.py - Package a trained model in a docker image.
+# dockerize_model.py - Package a trained domain model in a docker image, copy to remote server, and run it.
 
 import os
+import sys
 
-FLASK_PORT=5531
-DOMAIN='hackles'
+from common import cli
+
+
+args = cli.get_args(sys.argv)
+
+DOMAIN = args.domain or 'hackles' # example domain
+DOCKER_HOST = args.docker_host or '3.12.163.71'
+DOCKER_USER = args.docker_user or 'ubuntu'
+KEY = args.host_key or or None
+FLASK_PORT = args.port or 5531
+
 DIR = 'images/'
 IMAGE_NAME=DOMAIN
 FILE_NAME = DIR + IMAGE_NAME + '_latest.tar'
-DOCKER_USER = 'ubuntu'
-DOCKER_HOST = '3.12.163.71'
 
 
 build_cmd = "docker build -f build/predict/Dockerfile --build-arg FLASK_RUN_PORT={flask_port} -t {image_name} .".format(
@@ -20,29 +28,32 @@ save_cmd = "docker save {image_name}:latest > {file_name}".format(
     file_name=FILE_NAME,
     )
 
-#os.system(build_cmd)
-#   os.system(save_cmd)
+os.system(build_cmd)
+os.system(save_cmd)
+
 
 if __name__ == '__main__':
-    KEY="~/.AWS/byjove1.pem"
-    # For testing only. We use ansible or airflow to move our dockerized model.
-    #os.system("scp -i ~/.AWS/byjove1.pem {filename} ubuntu@3.12.163.71:~/".format(filename=FILE_NAME))
-    input("load?")
-    """
-    os.system("ssh -i {key} {docker_user}@{docker_host} docker load -i {filename}".format(
+    # For testing & development only. We use ansible/airflow to move our dockerized model.
+    os.system("scp -i {key} {filename} {user}@{host}:~/".format(
         key=KEY,
-        docker_user=DOCKER_USER,
-        docker_host=DOCKER_HOST,
+        user=DOCKER_USER,
+        host=DOCKER_HOST,
         filename=FILE_NAME,
         )
     )
-    """
-    input("run?")
-    # Run model.
-    RUN_CMD = "ssh -i {key} {docker_user}@{docker_host} docker run --expose {port} -p {port}:{port} {image_name}".format(
+
+    LOAD_CMD="ssh -i {key} {user}@{host} docker load -i {filename}".format(
         key=KEY,
-        docker_user=DOCKER_USER,
-        docker_host=DOCKER_HOST,
+        user=DOCKER_USER,
+        host=DOCKER_HOST,
+        filename=FILE_NAME,
+        )
+    os.system(LOAD_CMD)
+
+    RUN_CMD = "ssh -i {key} {user}@{host} docker run --expose {port} -p {port}:{port} {image_name}".format(
+        key=KEY,
+        user=DOCKER_USER,
+        host=DOCKER_HOST,
         filename=FILE_NAME,
         port=FLASK_PORT,
         image_name=IMAGE_NAME,
