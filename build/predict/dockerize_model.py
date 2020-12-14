@@ -50,12 +50,18 @@ if __name__ == '__main__':
         )
     os.system(LOAD_CMD)
 
-    RUN_CMD = "ssh -i {key} {user}@{host} docker run --expose {port} -p {port}:{port} {image_name}".format(
+    if USE_REDIS is not None:
+        REDIS = "--link my-redis-container:redis"
+    else:
+        REDIS = ''
+
+    RUN_CMD = "ssh -i {key} {user}@{host} docker run --expose {port} -p {port}:{port} {image_name} {redis}".format(
         key=KEY,
         user=DOCKER_USER,
         host=DOCKER_HOST,
         filename=FILE_NAME,
         port=FLASK_PORT,
         image_name=IMAGE_NAME,
+        redis=REDIS
         )
     os.system(RUN_CMD)

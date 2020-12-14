@@ -1,0 +1,25 @@
+
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+           <p style="color: red;">{{ message }}</p>
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+
+
+<form method="POST">
+    Requester's Email: <input id="email" name="email" type="email">
+    Docker Host: <input id="host" name="host" type="text">
+    Docker User: <input id="user" name="user" type="text">
+    Port Number: <input id="port" name="port" type="text">
+    Features: <textarea id="port" name="features"></textarea>
+
+   <select name="mode">
+      <option value="" disabled selected>Classification Mode</option>
+      <option value="1">Auto-SKLearn</option>
+      <option value="2">OptiML Search</option>
+   </select>
+
+   <button type="submit" name="action">Submit </button>
+</form>
