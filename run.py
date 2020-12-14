@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # run.py - Main entry point for DAE.
-__version__ = '0.2'
+__version__ = '0.3'
 
 import pickle
 from pprint import pprint
+import sys
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -11,10 +12,10 @@ from sklearn.model_selection import train_test_split
 
 from common import cli, utils
 from dae import *
-#from lib.ext.estimators import Estimator
-#from lib.ext.pipes import Pipe, ClassifierPipes
-#from lib.ext.scoring import Score, score_predict, save_score, load_report
-import shim
+from lib.ext.estimators import Estimator
+from lib.ext.pipes import Pipe, ClassifierPipes
+from lib.ext.scoring import Score, score_predict, save_score, load_report
+#import shim
 
 args = cli.get_args(sys.argv)
 

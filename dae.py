@@ -19,7 +19,6 @@ from common.utils import fopen
 from lib.ext import features
 from lib.ext.pipes import Pipe
 
-
 from api.domain import Domain, get_domains
 
 
@@ -123,15 +122,21 @@ def save_model(model):
     domain_model_path = MODELS + '/' + DOMAIN + '/'
     current_model = DOMAIN +  '.pkl'
     timestamped_model = DOMAIN + '_' + str(int(time.time())) + '.pkl'
-    filepath = domain_model_path + timestamped_model
 
     #if utils.path_exists(domain_model_path + best_model):
     #    utils.rename_file(domain_model_path, update_model, timestamped_model) # This is mainly for running models.
     #utils.rename_file(domain_model_path, timestamped_model, saved_model)
 
+
+    
+    filepath = domain_model_path + current_model
     with fopen(filepath, 'wb') as file:
         pickle.dump(model, file)
-    utils.path_alias(domain_model_path, timestamped_model, current_model)
+
+    filepath = domain_model_path + timestamped_model
+    with fopen(filepath, 'wb') as file:
+        pickle.dump(model, file)
+
 
     # Confirm model was saved.
     with open(filepath, 'rb') as file:

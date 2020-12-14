@@ -1302,7 +1302,6 @@ static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_est[] = "est";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_pav[] = "pav";
-static const char __pyx_k_svm[] = "svm";
 static const char __pyx_k_ests[] = "ests";
 static const char __pyx_k_exit[] = "__exit__";
 static const char __pyx_k_file[] = "file";
@@ -1399,7 +1398,6 @@ static PyObject *__pyx_n_u_rb;
 static PyObject *__pyx_n_s_redis;
 static PyObject *__pyx_n_s_self;
 static PyObject *__pyx_n_s_send;
-static PyObject *__pyx_n_u_svm;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_throw;
 static PyObject *__pyx_n_s_traceback;
@@ -1459,10 +1457,10 @@ static PyObject *__pyx_pf_10estimators_9Estimator___init__(CYTHON_UNUSED PyObjec
  *     def __init__(self):
  *         #self.ests = _estimators() # held in memory in Redis
  *         self.ests = iter([             # <<<<<<<<<<<<<<
+ *         #'ask',
  *         'bnb',
- *         #'knn',
  */
-  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_u_bnb);
   __Pyx_GIVEREF(__pyx_n_u_bnb);
@@ -1470,9 +1468,6 @@ static PyObject *__pyx_pf_10estimators_9Estimator___init__(CYTHON_UNUSED PyObjec
   __Pyx_INCREF(__pyx_n_u_pav);
   __Pyx_GIVEREF(__pyx_n_u_pav);
   PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_pav);
-  __Pyx_INCREF(__pyx_n_u_svm);
-  __Pyx_GIVEREF(__pyx_n_u_svm);
-  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_u_svm);
   __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1501,7 +1496,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator___init__(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-/* "estimators.py":26
+/* "estimators.py":27
  *         ]) # For development and debugging only.
  * 
  *     def send(self, noself):             # <<<<<<<<<<<<<<
@@ -1544,11 +1539,11 @@ static PyObject *__pyx_pw_10estimators_9Estimator_3send(PyObject *__pyx_self, Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_noself)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("send", 1, 2, 2, 1); __PYX_ERR(0, 26, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("send", 1, 2, 2, 1); __PYX_ERR(0, 27, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "send") < 0)) __PYX_ERR(0, 26, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "send") < 0)) __PYX_ERR(0, 27, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -1561,7 +1556,7 @@ static PyObject *__pyx_pw_10estimators_9Estimator_3send(PyObject *__pyx_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("send", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 26, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("send", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 27, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("estimators.Estimator.send", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1589,22 +1584,22 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("send", 0);
 
-  /* "estimators.py":27
+  /* "estimators.py":28
  * 
  *     def send(self, noself):
  *         for est in self.ests:             # <<<<<<<<<<<<<<
  *             if est is not None: # This is unnecessary.
  *                 return est
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ests); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ests); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 28, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -1612,17 +1607,17 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 27, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 28, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 27, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 28, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -1632,7 +1627,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 27, __pyx_L1_error)
+          else __PYX_ERR(0, 28, __pyx_L1_error)
         }
         break;
       }
@@ -1641,7 +1636,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
     __Pyx_XDECREF_SET(__pyx_v_est, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "estimators.py":28
+    /* "estimators.py":29
  *     def send(self, noself):
  *         for est in self.ests:
  *             if est is not None: # This is unnecessary.             # <<<<<<<<<<<<<<
@@ -1652,7 +1647,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
     __pyx_t_6 = (__pyx_t_5 != 0);
     if (__pyx_t_6) {
 
-      /* "estimators.py":29
+      /* "estimators.py":30
  *         for est in self.ests:
  *             if est is not None: # This is unnecessary.
  *                 return est             # <<<<<<<<<<<<<<
@@ -1665,7 +1660,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       goto __pyx_L0;
 
-      /* "estimators.py":28
+      /* "estimators.py":29
  *     def send(self, noself):
  *         for est in self.ests:
  *             if est is not None: # This is unnecessary.             # <<<<<<<<<<<<<<
@@ -1674,7 +1669,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
  */
     }
 
-    /* "estimators.py":27
+    /* "estimators.py":28
  * 
  *     def send(self, noself):
  *         for est in self.ests:             # <<<<<<<<<<<<<<
@@ -1684,7 +1679,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "estimators.py":26
+  /* "estimators.py":27
  *         ]) # For development and debugging only.
  * 
  *     def send(self, noself):             # <<<<<<<<<<<<<<
@@ -1707,7 +1702,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_2send(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "estimators.py":31
+/* "estimators.py":32
  *                 return est
  * 
  *     def throw(self, type=None, value=None, traceback=None):             # <<<<<<<<<<<<<<
@@ -1775,7 +1770,7 @@ static PyObject *__pyx_pw_10estimators_9Estimator_5throw(PyObject *__pyx_self, P
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "throw") < 0)) __PYX_ERR(0, 31, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "throw") < 0)) __PYX_ERR(0, 32, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -1797,7 +1792,7 @@ static PyObject *__pyx_pw_10estimators_9Estimator_5throw(PyObject *__pyx_self, P
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("throw", 0, 1, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 31, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("throw", 0, 1, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 32, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("estimators.Estimator.throw", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1818,7 +1813,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_4throw(CYTHON_UNUSED PyObject 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("throw", 0);
 
-  /* "estimators.py":32
+  /* "estimators.py":33
  * 
  *     def throw(self, type=None, value=None, traceback=None):
  *         raise StopIteration             # <<<<<<<<<<<<<<
@@ -1826,9 +1821,9 @@ static PyObject *__pyx_pf_10estimators_9Estimator_4throw(CYTHON_UNUSED PyObject 
  * 
  */
   __Pyx_Raise(__pyx_builtin_StopIteration, 0, 0, 0);
-  __PYX_ERR(0, 32, __pyx_L1_error)
+  __PYX_ERR(0, 33, __pyx_L1_error)
 
-  /* "estimators.py":31
+  /* "estimators.py":32
  *                 return est
  * 
  *     def throw(self, type=None, value=None, traceback=None):             # <<<<<<<<<<<<<<
@@ -1845,7 +1840,7 @@ static PyObject *__pyx_pf_10estimators_9Estimator_4throw(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "estimators.py":35
+/* "estimators.py":36
  * 
  * 
  * def _estimators():             # <<<<<<<<<<<<<<
@@ -1899,7 +1894,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_estimators", 0);
 
-  /* "estimators.py":36
+  /* "estimators.py":37
  * 
  * def _estimators():
  *     try:             # <<<<<<<<<<<<<<
@@ -1915,21 +1910,21 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "estimators.py":37
+      /* "estimators.py":38
  * def _estimators():
  *     try:
  *         ests = json.loads(r.get("estimators:active"))             # <<<<<<<<<<<<<<
  *     except Exception as e:
  *         print(e)
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_json); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 37, __pyx_L3_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_json); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 38, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_loads); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 37, __pyx_L3_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_loads); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 38, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_r); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 37, __pyx_L3_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_r); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 38, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 37, __pyx_L3_error)
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 38, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_7 = NULL;
@@ -1944,7 +1939,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
       }
       __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_7, __pyx_kp_u_estimators_active) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_kp_u_estimators_active);
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 37, __pyx_L3_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 38, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_8 = NULL;
@@ -1960,13 +1955,13 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
       __pyx_t_4 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_8, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_5);
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L3_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_v_ests = __pyx_t_4;
       __pyx_t_4 = 0;
 
-      /* "estimators.py":36
+      /* "estimators.py":37
  * 
  * def _estimators():
  *     try:             # <<<<<<<<<<<<<<
@@ -1985,7 +1980,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "estimators.py":38
+    /* "estimators.py":39
  *     try:
  *         ests = json.loads(r.get("estimators:active"))
  *     except Exception as e:             # <<<<<<<<<<<<<<
@@ -1995,7 +1990,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
     __pyx_t_9 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_9) {
       __Pyx_AddTraceback("estimators._estimators", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_6, &__pyx_t_5) < 0) __PYX_ERR(0, 38, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_6, &__pyx_t_5) < 0) __PYX_ERR(0, 39, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_5);
@@ -2003,18 +1998,18 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
       __pyx_v_e = __pyx_t_6;
       /*try:*/ {
 
-        /* "estimators.py":39
+        /* "estimators.py":40
  *         ests = json.loads(r.get("estimators:active"))
  *     except Exception as e:
  *         print(e)             # <<<<<<<<<<<<<<
  *         with open('config/ests.pkl', 'rb') as file:
  *             ests = pickle.load(file)
  */
-        __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_v_e); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 39, __pyx_L14_error)
+        __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_v_e); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 40, __pyx_L14_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-        /* "estimators.py":40
+        /* "estimators.py":41
  *     except Exception as e:
  *         print(e)
  *         with open('config/ests.pkl', 'rb') as file:             # <<<<<<<<<<<<<<
@@ -2022,11 +2017,11 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
  * 
  */
         /*with:*/ {
-          __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 40, __pyx_L14_error)
+          __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 41, __pyx_L14_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = __Pyx_PyObject_LookupSpecial(__pyx_t_8, __pyx_n_s_exit); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 40, __pyx_L14_error)
+          __pyx_t_10 = __Pyx_PyObject_LookupSpecial(__pyx_t_8, __pyx_n_s_exit); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 41, __pyx_L14_error)
           __Pyx_GOTREF(__pyx_t_10);
-          __pyx_t_11 = __Pyx_PyObject_LookupSpecial(__pyx_t_8, __pyx_n_s_enter); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 40, __pyx_L16_error)
+          __pyx_t_11 = __Pyx_PyObject_LookupSpecial(__pyx_t_8, __pyx_n_s_enter); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 41, __pyx_L16_error)
           __Pyx_GOTREF(__pyx_t_11);
           __pyx_t_12 = NULL;
           if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_11))) {
@@ -2040,7 +2035,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
           }
           __pyx_t_7 = (__pyx_t_12) ? __Pyx_PyObject_CallOneArg(__pyx_t_11, __pyx_t_12) : __Pyx_PyObject_CallNoArg(__pyx_t_11);
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 40, __pyx_L16_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 41, __pyx_L16_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
           __pyx_t_11 = __pyx_t_7;
@@ -2058,16 +2053,16 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
                 __pyx_v_file = __pyx_t_11;
                 __pyx_t_11 = 0;
 
-                /* "estimators.py":41
+                /* "estimators.py":42
  *         print(e)
  *         with open('config/ests.pkl', 'rb') as file:
  *             ests = pickle.load(file)             # <<<<<<<<<<<<<<
  * 
  *     return iter(ests)
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_pickle); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 41, __pyx_L22_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_pickle); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 42, __pyx_L22_error)
                 __Pyx_GOTREF(__pyx_t_8);
-                __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_load); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 41, __pyx_L22_error)
+                __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_load); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 42, __pyx_L22_error)
                 __Pyx_GOTREF(__pyx_t_7);
                 __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
                 __pyx_t_8 = NULL;
@@ -2082,13 +2077,13 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
                 }
                 __pyx_t_11 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_8, __pyx_v_file) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_file);
                 __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-                if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 41, __pyx_L22_error)
+                if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 42, __pyx_L22_error)
                 __Pyx_GOTREF(__pyx_t_11);
                 __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
                 __Pyx_XDECREF_SET(__pyx_v_ests, __pyx_t_11);
                 __pyx_t_11 = 0;
 
-                /* "estimators.py":40
+                /* "estimators.py":41
  *     except Exception as e:
  *         print(e)
  *         with open('config/ests.pkl', 'rb') as file:             # <<<<<<<<<<<<<<
@@ -2107,20 +2102,20 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
               __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
               /*except:*/ {
                 __Pyx_AddTraceback("estimators._estimators", __pyx_clineno, __pyx_lineno, __pyx_filename);
-                if (__Pyx_GetException(&__pyx_t_11, &__pyx_t_7, &__pyx_t_8) < 0) __PYX_ERR(0, 40, __pyx_L24_except_error)
+                if (__Pyx_GetException(&__pyx_t_11, &__pyx_t_7, &__pyx_t_8) < 0) __PYX_ERR(0, 41, __pyx_L24_except_error)
                 __Pyx_GOTREF(__pyx_t_11);
                 __Pyx_GOTREF(__pyx_t_7);
                 __Pyx_GOTREF(__pyx_t_8);
-                __pyx_t_12 = PyTuple_Pack(3, __pyx_t_11, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 40, __pyx_L24_except_error)
+                __pyx_t_12 = PyTuple_Pack(3, __pyx_t_11, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 41, __pyx_L24_except_error)
                 __Pyx_GOTREF(__pyx_t_12);
                 __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_12, NULL);
                 __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
                 __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-                if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 40, __pyx_L24_except_error)
+                if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 41, __pyx_L24_except_error)
                 __Pyx_GOTREF(__pyx_t_16);
                 __pyx_t_17 = __Pyx_PyObject_IsTrue(__pyx_t_16);
                 __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-                if (__pyx_t_17 < 0) __PYX_ERR(0, 40, __pyx_L24_except_error)
+                if (__pyx_t_17 < 0) __PYX_ERR(0, 41, __pyx_L24_except_error)
                 __pyx_t_18 = ((!(__pyx_t_17 != 0)) != 0);
                 if (__pyx_t_18) {
                   __Pyx_GIVEREF(__pyx_t_11);
@@ -2128,7 +2123,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
                   __Pyx_XGIVEREF(__pyx_t_8);
                   __Pyx_ErrRestoreWithState(__pyx_t_11, __pyx_t_7, __pyx_t_8);
                   __pyx_t_11 = 0; __pyx_t_7 = 0; __pyx_t_8 = 0; 
-                  __PYX_ERR(0, 40, __pyx_L24_except_error)
+                  __PYX_ERR(0, 41, __pyx_L24_except_error)
                 }
                 __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
                 __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -2154,7 +2149,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
               if (__pyx_t_10) {
                 __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_tuple__2, NULL);
                 __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-                if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 40, __pyx_L14_error)
+                if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 41, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_15);
                 __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
               }
@@ -2170,7 +2165,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
         }
       }
 
-      /* "estimators.py":38
+      /* "estimators.py":39
  *     try:
  *         ests = json.loads(r.get("estimators:active"))
  *     except Exception as e:             # <<<<<<<<<<<<<<
@@ -2229,7 +2224,7 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "estimators.py":36
+    /* "estimators.py":37
  * 
  * def _estimators():
  *     try:             # <<<<<<<<<<<<<<
@@ -2249,20 +2244,20 @@ static PyObject *__pyx_pf_10estimators__estimators(CYTHON_UNUSED PyObject *__pyx
     __pyx_L8_try_end:;
   }
 
-  /* "estimators.py":43
+  /* "estimators.py":44
  *             ests = pickle.load(file)
  * 
  *     return iter(ests)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_ests)) { __Pyx_RaiseUnboundLocalError("ests"); __PYX_ERR(0, 43, __pyx_L1_error) }
-  __pyx_t_5 = PyObject_GetIter(__pyx_v_ests); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (unlikely(!__pyx_v_ests)) { __Pyx_RaiseUnboundLocalError("ests"); __PYX_ERR(0, 44, __pyx_L1_error) }
+  __pyx_t_5 = PyObject_GetIter(__pyx_v_ests); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "estimators.py":35
+  /* "estimators.py":36
  * 
  * 
  * def _estimators():             # <<<<<<<<<<<<<<
@@ -2515,7 +2510,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_redis, __pyx_k_redis, sizeof(__pyx_k_redis), 0, 0, 1, 1},
   {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
   {&__pyx_n_s_send, __pyx_k_send, sizeof(__pyx_k_send), 0, 0, 1, 1},
-  {&__pyx_n_u_svm, __pyx_k_svm, sizeof(__pyx_k_svm), 0, 1, 0, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_throw, __pyx_k_throw, sizeof(__pyx_k_throw), 0, 0, 1, 1},
   {&__pyx_n_s_traceback, __pyx_k_traceback, sizeof(__pyx_k_traceback), 0, 0, 1, 1},
@@ -2525,9 +2519,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_StopIteration = __Pyx_GetBuiltinName(__pyx_n_s_StopIteration); if (!__pyx_builtin_StopIteration) __PYX_ERR(0, 32, __pyx_L1_error)
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 39, __pyx_L1_error)
-  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_builtin_StopIteration = __Pyx_GetBuiltinName(__pyx_n_s_StopIteration); if (!__pyx_builtin_StopIteration) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 41, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2537,17 +2531,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "estimators.py":40
+  /* "estimators.py":41
  *     except Exception as e:
  *         print(e)
  *         with open('config/ests.pkl', 'rb') as file:             # <<<<<<<<<<<<<<
  *             ests = pickle.load(file)
  * 
  */
-  __pyx_tuple_ = PyTuple_Pack(2, __pyx_kp_u_config_ests_pkl, __pyx_n_u_rb); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(2, __pyx_kp_u_config_ests_pkl, __pyx_n_u_rb); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_tuple__2 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
@@ -2563,44 +2557,44 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__4);
   __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_estimators_py, __pyx_n_s_init, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 16, __pyx_L1_error)
 
-  /* "estimators.py":26
+  /* "estimators.py":27
  *         ]) # For development and debugging only.
  * 
  *     def send(self, noself):             # <<<<<<<<<<<<<<
  *         for est in self.ests:
  *             if est is not None: # This is unnecessary.
  */
-  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_noself, __pyx_n_s_est); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_noself, __pyx_n_s_est); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_estimators_py, __pyx_n_s_send, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_estimators_py, __pyx_n_s_send, 27, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 27, __pyx_L1_error)
 
-  /* "estimators.py":31
+  /* "estimators.py":32
  *                 return est
  * 
  *     def throw(self, type=None, value=None, traceback=None):             # <<<<<<<<<<<<<<
  *         raise StopIteration
  * 
  */
-  __pyx_tuple__8 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_type, __pyx_n_s_value, __pyx_n_s_traceback); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_type, __pyx_n_s_value, __pyx_n_s_traceback); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_estimators_py, __pyx_n_s_throw, 31, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 31, __pyx_L1_error)
-  __pyx_tuple__10 = PyTuple_Pack(3, ((PyObject *)Py_None), ((PyObject *)Py_None), ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_estimators_py, __pyx_n_s_throw, 32, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(3, ((PyObject *)Py_None), ((PyObject *)Py_None), ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "estimators.py":35
+  /* "estimators.py":36
  * 
  * 
  * def _estimators():             # <<<<<<<<<<<<<<
  *     try:
  *         ests = json.loads(r.get("estimators:active"))
  */
-  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_n_s_ests, __pyx_n_s_e, __pyx_n_s_file); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_n_s_ests, __pyx_n_s_e, __pyx_n_s_file); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_estimators_py, __pyx_n_s_estimators_2, 35, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_estimators_py, __pyx_n_s_estimators_2, 36, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3030,29 +3024,29 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "estimators.py":26
+  /* "estimators.py":27
  *         ]) # For development and debugging only.
  * 
  *     def send(self, noself):             # <<<<<<<<<<<<<<
  *         for est in self.ests:
  *             if est is not None: # This is unnecessary.
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_10estimators_9Estimator_3send, 0, __pyx_n_s_Estimator_send, NULL, __pyx_n_s_estimators, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_10estimators_9Estimator_3send, 0, __pyx_n_s_Estimator_send, NULL, __pyx_n_s_estimators, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_send, __pyx_t_4) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_send, __pyx_t_4) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "estimators.py":31
+  /* "estimators.py":32
  *                 return est
  * 
  *     def throw(self, type=None, value=None, traceback=None):             # <<<<<<<<<<<<<<
  *         raise StopIteration
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_10estimators_9Estimator_5throw, 0, __pyx_n_s_Estimator_throw, NULL, __pyx_n_s_estimators, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_10estimators_9Estimator_5throw, 0, __pyx_n_s_Estimator_throw, NULL, __pyx_n_s_estimators, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__10);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_throw, __pyx_t_4) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_throw, __pyx_t_4) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "estimators.py":15
@@ -3070,16 +3064,16 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "estimators.py":35
+  /* "estimators.py":36
  * 
  * 
  * def _estimators():             # <<<<<<<<<<<<<<
  *     try:
  *         ests = json.loads(r.get("estimators:active"))
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_10estimators_1_estimators, 0, __pyx_n_s_estimators_2, NULL, __pyx_n_s_estimators, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_10estimators_1_estimators, 0, __pyx_n_s_estimators_2, NULL, __pyx_n_s_estimators, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_estimators_2, __pyx_t_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_estimators_2, __pyx_t_1) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "estimators.py":1
