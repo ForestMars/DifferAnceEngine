@@ -10,6 +10,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 #from autosklearn.experimental.askl2 import AutoSklearn2Classifier
 
+from redis import Redis
+from rq import Queue
+
 from common import cli, utils
 from dae import *
 from lib.ext.estimators import Estimator
@@ -31,6 +34,8 @@ DATA_DIR = DATA + DOMAIN
 
 if __name__ == '__main__':
 
+    q = Queue(connection=Redis())
+
     avail_feats = _avail_feats()
 
     ## LOAD
@@ -43,8 +48,8 @@ if __name__ == '__main__':
 
     # @TODO: Announce how many candidates the search space contains.
 
-    search_space(avail_feats, dataset, testset)
-
+    job = q.enqueue(search_space, avail_feats, dataset, testset)
+    print(job.get_id())
 
     # Ask, don't tell principle.
     #get report for domain- don't load here, have it loaded for you.
