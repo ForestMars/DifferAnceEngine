@@ -36,11 +36,54 @@ TRAIN_TEST_SET = DATA_DIR + TRAIN_TEST
 DAE_MODE = 'predict_score'
 
 
-def dae_score_predict():
+def dae_score_predict(model, params, report):
     """ Score and predict full test set """
     target_names = utils.get_dir_list(TRAIN_TEST_SET)
     score = score_predict(model, testset)
-    save_score(report, model_id, est, len(dataset), len(testset), num_feats, cv, score, 'predict_score')
+    save_score(report, params['model_id'], params['est'], len(dataset), len(testset), params['num_feats'], cv, score, 'predict_score')
+
+def search_space():
+    params = {}
+    for ffs in feature_space_generator(avail_feats):
+        Est = Estimator()
+
+        estimator = (next(Est))
+
+        while estimator is not None:
+            try:
+                est = estimator
+                estimator = (next(Est))
+            except Exception as e:
+                print('StopIteration caught', e)
+
+            pipe = Pipe()
+
+            params['num_feats'] = tuple(ffs)
+            norm_pipes = normalize_feat_pipe(ffs)
+            union = pipeline(params['num_feats'], norm_pipes)
+
+            # Add final estimator and learn fit.
+            cls = ClassifierPipes()
+            clf = pipe.chain_pipes([union, cls.clf(est)])
+            clf.fit(X_train, y_train)
+
+            model = clf
+            params['model_id'] = save_model(clf)
+
+            # move this into function
+            scor = Score()
+
+            report = load_report()
+
+            train_score = clf.score(X_train, y_train)
+            test_score = clf.score(X_test, y_test)
+            #scores = scor.store(model_id, est, len(dataset), len(testset), num_feats, cv, train_score, 'train_score')
+            #scores = scor.store(model_id, est, len(dataset), len(testset), num_feats, cv, test_score, 'test_score')
+
+            params['est'] = est
+
+            if DAE_MODE == 'predict_score':
+                dae_score_predict(model, params, report)
 
 
 if __name__ == '__main__':
@@ -63,44 +106,8 @@ if __name__ == '__main__':
     testset=testset.head(100)
     # @TODO: Announce how many candidates the search space contains.
 
-    for ffs in feature_space_generator(avail_feats):
-        Est = Estimator()
+    search_space()
 
-        estimator = (next(Est))
-
-        while estimator is not None:
-            try:
-                est = estimator
-                estimator = (next(Est))
-            except Exception as e:
-                print('StopIteration caught', e)
-
-            pipe = Pipe()
-
-            num_feats = tuple(ffs)
-            norm_pipes = normalize_feat_pipe(ffs)
-            union = pipeline(num_feats, norm_pipes)
-
-            # Add final estimator and learn fit.
-            cls = ClassifierPipes()
-            clf = pipe.chain_pipes([union, cls.clf(est)])
-            clf.fit(X_train, y_train)
-
-            model = clf
-            model_id = save_model(clf)
-
-            # move this into function
-            scor = Score()
-
-            report = load_report()
-
-            train_score = clf.score(X_train, y_train)
-            test_score = clf.score(X_test, y_test)
-            #scores = scor.store(model_id, est, len(dataset), len(testset), num_feats, cv, train_score, 'train_score')
-            #scores = scor.store(model_id, est, len(dataset), len(testset), num_feats, cv, test_score, 'test_score')
-
-            if DAE_MODE == 'predict_score':
-                dae_score_predict()
 
     # Ask, don't tell principle.
     #get report for domain- don't load here, have it loaded for you.
