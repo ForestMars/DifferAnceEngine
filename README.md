@@ -4,6 +4,7 @@ At a high level, DifferAnce Engine (hereafter, DAE) is a meta-learning framework
 
 An important design principle behind DAE is that classification inaccuracies arise from hidden assumptions that impact the target domain, and thus the minimization of such assumptions reduces classification error in a measurable way.
 
+[![PyPI](https://img.shields.io/pypi/pyversions/rq.svg)](https://pypi.python.org/pypi/rq)
 
 ## Table of contents
 
