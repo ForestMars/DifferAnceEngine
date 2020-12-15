@@ -49,7 +49,6 @@ if __name__ == '__main__':
     # @TODO: Announce how many candidates the search space contains.
 
     job = q.enqueue(search_space, avail_feats, dataset, testset)
-    print(job.get_id())
 
     # Ask, don't tell principle.
     #get report for domain- don't load here, have it loaded for you.

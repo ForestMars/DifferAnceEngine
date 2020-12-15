@@ -82,3 +82,5 @@ def search_space(avail_feats, dataset, testset):
 
             if DAE_MODE == 'predict_score':
                 dae_score_predict(model, params, report, dataset, testset)
+
+    return "Done."
