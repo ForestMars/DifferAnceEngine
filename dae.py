@@ -18,6 +18,7 @@ from common import utils
 from common.utils import fopen
 from lib.ext import features
 from lib.ext.pipes import Pipe
+from common.lumberjack import Log as log
 
 from api.domain import Domain, get_domains
 
@@ -127,21 +128,23 @@ def save_model(model):
     #    utils.rename_file(domain_model_path, update_model, timestamped_model) # This is mainly for running models.
     #utils.rename_file(domain_model_path, timestamped_model, saved_model)
 
-
-    
+    # We dump model twice bc of problematic alias handling (point current at timestamped.)
     filepath = domain_model_path + current_model
     with fopen(filepath, 'wb') as file:
         pickle.dump(model, file)
-
     filepath = domain_model_path + timestamped_model
     with fopen(filepath, 'wb') as file:
         pickle.dump(model, file)
 
-
     # Confirm model was saved.
     with open(filepath, 'rb') as file:
-        saved_model = pickle.load(file)
-    return current_model
+        # This try/except block can be removed.
+        try:
+            saved_model = pickle.load(file)
+        except Exception as e:
+            log(e)
+
+    return saved_model, current_model,
 
 
 def x_val():

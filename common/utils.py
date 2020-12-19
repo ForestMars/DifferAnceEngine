@@ -27,6 +27,12 @@ class HaltException(Exception): pass
 
 class ContextManager_(_GeneratorContextManager, ContextDecorator): pass
 
+class ddict(dict):
+    """ dot.notation for dicts """
+    __getattr__ = dict.get
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
+
 
 # Decorator for writing to filesystem.
 def exists(func):

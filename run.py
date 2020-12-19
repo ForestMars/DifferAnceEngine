@@ -13,9 +13,10 @@ from sklearn.model_selection import train_test_split
 from common import cli, utils
 from dae import *
 from lib.ext.estimators import Estimator
-from lib.ext.pipes import Pipe, ClassifierPipes
+#from lib.ext.pipes import Pipe, ClassifierPipes
 from lib.ext.scoring import Score, score_predict, save_score, load_report
 #import shim
+from build.src.pipes import Pipe, ClassifierPipes
 
 args = cli.get_args(sys.argv)
 
@@ -36,7 +37,8 @@ TRAIN_TEST_SET = DATA_DIR + TRAIN_TEST
 DAE_MODE = 'predict_score'
 
 
-def dae_score_predict():
+# What is this.
+def dae_score_predict(model):
     """ Score and predict full test set """
     target_names = utils.get_dir_list(TRAIN_TEST_SET)
     score = score_predict(model, testset)
@@ -86,8 +88,7 @@ if __name__ == '__main__':
             clf = pipe.chain_pipes([union, cls.clf(est)])
             clf.fit(X_train, y_train)
 
-            model = clf
-            model_id = save_model(clf)
+            model, model_id = save_model(clf)
 
             # move this into function
             scor = Score()
@@ -100,7 +101,7 @@ if __name__ == '__main__':
             #scores = scor.store(model_id, est, len(dataset), len(testset), num_feats, cv, test_score, 'test_score')
 
             if DAE_MODE == 'predict_score':
-                dae_score_predict()
+                dae_score_predict(model)
 
     # Ask, don't tell principle.
     #get report for domain- don't load here, have it loaded for you.

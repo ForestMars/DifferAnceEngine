@@ -65,7 +65,7 @@ def search_space(avail_feats, dataset, testset):
             clf = pipe.chain_pipes([union, cls.clf(est)])
             clf.fit(X_train, y_train)
 
-            model = clf
+            model = clf # decoupling
             params['model_id'] = save_model(clf)
 
             # move this into function

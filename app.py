@@ -1,17 +1,18 @@
-# app.py - Stand alone predict module for dockerizing.
+# app.py - predict module for dockerizing.
 
 import logging
 
-#from flask import Flask, Response, request, redirect, session
 from flask import Flask, Response, flash, request
 import nltk
 import pandas as pd
 from redis import Redis
 from rq import Queue
 import sklearn
+import waitress
 
 from common import utils
 from make_prediction import prediction
+from common.lumberjack import Log as log
 
 nltk.download('stopwords')
 
@@ -35,17 +36,13 @@ def index():
 @app.route('/predict', methods = ['GET', 'POST'])
 def predict():
     """ Expects a blob and a domain key to predict against. """
-    #predict_req = request.form.to_dict()
-    #blob = predict_req['text']
-    #resp = prediction(blob)
-    #resp = prediction(request.form['text'])
-
     job = q.enqueue(prediction, request.form['text'])
-    print(job.get_id())
-    input('back')
+    log(job.get_id())
+    
     return Response(resp, mimetype='text/xml')
 
 
 if __name__ == '__main__':
         #app.run(host='0.0.0.0', port=FLASK_RUN_PORT, url_scheme='https')
         app.run(host='0.0.0.0', port=FLASK_RUN_PORT, debug=True)
+        # serve(app, host='0.0.0.0', port=5531) # waitress

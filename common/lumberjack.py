@@ -1,25 +1,31 @@
-
-# lumberjack.py - Logging that clears the forest.
+# lib/logger.py - Logging class and functions for DAE.
 __version__ = '0.1'
 __all__ = ['Log', 'LOG_LEVEL', 'LOG_DIR', 'LOGFILE_NAME']
 #import inspect
+import os
 import logging
 import traceback
 
 
-# Sensible defaults.
+from common.utils import ddict, mkdir
+
+
+# Sensible defaults
 LOG_LEVEL = 'DEBUG'
-LOG_DIR = 'logs/'
+LOG_DIR = 'logs/' or mkdir('logs')
+mkdir('logs')
 LOGFILE_NAME = 'debug.log'
+os.system("touch logs/debug.log")
+FORMAT = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.LOG_LEVEL)
+logger.setLevel(logging.DEBUG)
 
 handler = logging.FileHandler(LOG_DIR + LOGFILE_NAME)
-handler.setLevel(logging.LOG_LEVEL)
+handler.setLevel(logging.DEBUG)
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = FORMAT
 handler.setFormatter(formatter)
 
 logger.addHandler(handler)
@@ -45,7 +51,7 @@ class Log(object):
 
 
 def is_debug():
-    return logging.getLogger("logger").getEffectiveLevel() == logging.LOG_LEVEL
+    return logging.getLogger("logger").getEffectiveLevel() == logging.DEBUG
 
 
 def log(logmsg, lvl='INFO', e=None):
@@ -57,6 +63,7 @@ def log(logmsg, lvl='INFO', e=None):
 
 
 """
+# Flask config loader.
 except Exception as e:
     log("Error finding or loading DevelopmentConfig object. You probably need to specify package since Python 3 dropped support for relative import. (See PEP 8)", e)
     try:
