@@ -29,16 +29,25 @@ class KosherPickleMixin(object):
     """ Mixin for encrypting pickles. """
 
     def __getstate__(self):
+        input('wasssup')
         if 'MOT' in globals():
-            return self.encrypt(self.__dict__, MOT)
+            input('ok go')
+            foo = self.encrypt(self.__dict__, MOT)
+            input(foo)
+            return foo
         else:
             return self.__dict__
 
     def __setstate__(self, obj):
+        input('entering decrypt')
+        input(obj)
         if isinstance(obj, bytes) and 'MOT' in globals():
             try:
+                input('tyring decrpt')
                 self.__dict__ = self.decrypt(obj, MOT)
+                input(self.__dict__)
             except Exception as e:
+                input('caught err')
                 input(e)
         else:
             return obj.__dict__
@@ -61,25 +70,37 @@ class KosherPickleMixin(object):
         return self._algo
 
     def encrypt(self, raw_data, pw, protocol=None, fix_imports=True):
+        input('this is not bork')
         salt = os.urandom(SALT_SIZE)
         key = self.derive_key(pw, salt)
-        encryption = self.encryption(key)
+        #encryption = self.encryption(key)
+        fernet = Fernet(key)
         pickled_data = pickle.dumps(
             raw_data,
             protocol=protocol,
             fix_imports=fix_imports
             )
-        encrypted_data = encryption.encrypt(pickled_data)
-
+        input(pickled_data)
+        input('heres ed')
+        encrypted_data = fernet.encrypt(pickled_data)
+        input('that was ed')
+        #encrypted_data = encryption.encrypt(pickled_data)
+        input('about to return')
         return salt + encrypted_data
 
     def decrypt(self, input_data, pw, fix_imports=True, encoding="ASCII", errors="strict"):
+        input('here we go baby')
         salt = input_data[:SALT_SIZE]
         encrypted_data = input_data[SALT_SIZE:]
         key = self.derive_key(pw, salt)
         fernet = Fernet(key)
-        pickled_data = fernet.decrypt(encrypted_data)
+        input('our e data is -----------------')
+        input(encrypted_data)
 
+        pickled_data = fernet.decrypt(encrypted_data)
+        input('our pickleded data is -----------------')
+        input(pickled_data)
+        input('ok return')
         return pickle.loads(
             pickled_data,
             fix_imports=fix_imports,
