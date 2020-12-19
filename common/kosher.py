@@ -31,10 +31,10 @@ class KosherPickleMixin(object):
 
     def __getstate__(self):
         if 'MOT' in globals():
-            foo = self.encrypt(self.__dict__, MOT)
 
-            return foo
+            return self.encrypt(self.__dict__, MOT)
         else:
+
             return self.__dict__
 
 
@@ -61,24 +61,10 @@ class KosherPickleMixin(object):
         return base64.urlsafe_b64encode(kdf.derive(pw))
 
 
-    def aes_iv():
-        iv = ''.join([chr(random.randint(0, 0xFF)) for i in range(16)])
-        #return 'foo'
-
-    def aes():
-        aes = AES.new(self.derive_key, AES.MODE_CBC, self.aes.iv)
-        return aes
-
-
-
-    def scheme(self, key): # aka scheme
-        """ N.B. Currently supports only Fernet (symmetric) encryption. """
+    def scheme(self, key):
         #if self._algo  in globals() and isinstance(globals()[self._algo], types.ClassType):
         if self._algo in globals():
-            input('ha')
-            input(str(self._algo))
-
-            input(self._algos[self._algo])
+            self._algos[self._algo]
             return globals()[self._algo](key, self._algo[0])
 
 
@@ -114,7 +100,8 @@ class KosherPickleMixin(object):
     @property
     def _algo(self):
         """ Currently Kosher only uses Fernet. """
-        self.algo = 'AES'
+        #self.algo = 'AES'
+        self.algo = 'Fernet'
         return self.algo
 
 
@@ -125,6 +112,7 @@ class KosherPickleMixin(object):
         else:
             print("Sorry, " + algor + " is not currently supported.")
 
+
     @property
     def algos():
         self.algos = [
@@ -132,3 +120,7 @@ class KosherPickleMixin(object):
             {'Fernet': ['']},
             ]
         return self.algos
+
+
+    def aes_iv():
+        iv = ''.join([chr(random.randint(0, 0xFF)) for i in range(16)])
