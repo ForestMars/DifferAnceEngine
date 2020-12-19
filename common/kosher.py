@@ -99,7 +99,7 @@ class KosherPickleMixin(object):
 
     @property
     def _algo(self):
-        """ Currently Kosher only uses Fernet. """
+        """ Pick your poison and uncomment for now. """
         #self.algo = 'AES'
         self.algo = 'Fernet'
         return self.algo
@@ -115,6 +115,7 @@ class KosherPickleMixin(object):
 
     @property
     def algos():
+        """ Encryption algorithm parameters kwargs """
         self.algos = [
             {'AES': [AES.MODE_CBC, self.aes.iv]},
             {'Fernet': ['']},
@@ -122,5 +123,6 @@ class KosherPickleMixin(object):
         return self.algos
 
 
+    # Need test for this pls.
     def aes_iv():
         iv = ''.join([chr(random.randint(0, 0xFF)) for i in range(16)])
