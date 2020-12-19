@@ -61,7 +61,7 @@ class KosherPickleMixin(object):
         return base64.urlsafe_b64encode(kdf.derive(pw))
 
 
-    def encryption(self, key): # aka scheme
+    def scheme(self, key): # aka scheme
         """ N.B. Currently supports only Fernet (symmetric) encryption. """
         #if self._algo  in globals() and isinstance(globals()[self._algo], types.ClassType):
         if self._algo in globals():
@@ -72,15 +72,12 @@ class KosherPickleMixin(object):
     def encrypt(self, raw_data, pw, protocol=None, fix_imports=True):
         salt = os.urandom(SALT_SIZE)
         key = self.derive_key(pw, salt)
-        #encryption = self.encryption(key)
-        #fernet = Fernet(key)
-        scheme = self.encryption(key)
+        scheme = self.scheme(key)
         pickled_data = pickle.dumps(
             raw_data,
             protocol=protocol,
             fix_imports=fix_imports
             )
-
         encrypted_data = scheme.encrypt(pickled_data)
 
         return salt + encrypted_data
@@ -88,10 +85,10 @@ class KosherPickleMixin(object):
 
     def decrypt(self, input_data, pw, fix_imports=True, encoding="ASCII", errors="strict"):
         salt = input_data[:SALT_SIZE]
-        encrypted_data = input_data[SALT_SIZE:]
         key = self.derive_key(pw, salt)
-        fernet = Fernet(key)
-        pickled_data = fernet.decrypt(encrypted_data)
+        scheme = self.scheme(key)
+        encrypted_data = input_data[SALT_SIZE:]
+        pickled_data = scheme.decrypt(encrypted_data)
 
         return pickle.loads(
             pickled_data,
@@ -117,5 +114,6 @@ class KosherPickleMixin(object):
 
 
     algos = [
+        'AES',
         'Fernet',
         ]
