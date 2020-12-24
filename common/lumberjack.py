@@ -78,4 +78,12 @@ except Exception as e:
     except:
         handle_unhandled_error()
         log("no idea.")
+
+logging.basicConfig(level=logging.DEBUG, format='%(message)s | \'%(name)s:%(lineno)s\'')
+log = logging.getLogger(os.path.basename(__file__))
+
+logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+    datefmt='%Y-%m-%d:%H:%M:%S',
+    level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 """

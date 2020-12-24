@@ -12,7 +12,7 @@ import waitress
 
 from common import utils
 from make_prediction import prediction
-from common.lumberjack import Log as log
+from common.lumberjack import Log as log # PEP8
 
 nltk.download('stopwords')
 

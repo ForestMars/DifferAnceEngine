@@ -34,7 +34,7 @@ DifferAnce Engine has the following modes of operation:
 
 Predict mode is essentially the same as API mode, with at least one domain running an optimized model.
 
-The main intents behind DifferAnce Engine (besides building a framework that has the ability to "tell the difference between any 2 things") are firstly to create an API based solution for all the classification problems that otherwise require a great deal of repetitive and tedious coding. Secondly, to enable a highly configurable Auto-ML framework, giving fine grained control over searching a computationally huge search space, and finally to provide a stepping stone from Auto-ML based approaches to true Meta-learning. This is mainly acheived through integration with [Someta] Meta-learning framework.
+The main intents behind DifferAnce Engine (besides building a framework that has the ability to "tell the difference between any 2 things") are firstly to create an API based solution for all the classification problems that otherwise require a great deal of repetitive and tedious coding. Secondly, to enable a highly configurable Auto-ML framework, giving fine grained control over searching a computationally huge search space, and finally to provide a stepping stone from Auto-ML based approaches to true Meta-learning. This is mainly acheived through integration with the [Someta] learning framework.
 
 Scalability of the computationally expensive parameter optimizations is not handled by DifferAnce Engine, but is offloaded to the Fast ML pipeline, which takes care of parallelizing the processes and auto-scaling as needed.
 
@@ -43,7 +43,7 @@ The pipe factory changes the convention of of naming things after their labels (
 
 ## BUILD
 
-TO build DifferAnce Engine for your architecture, run make build:
+To build DifferAnce Engine for your architecture, run make build:
 
 ```
 make build
@@ -79,7 +79,7 @@ DifferAnce Engine has been successfully used as a resumé sorting system for mac
 
 Mainly intended as solution for sorting through very (VERY) large data lakes to classify voluminous quantities of documents, DifferAnce engine has also had some promising sucesses in distinguishing "good" contracts from "bad" and red flagging documents flowing through a workflow for review.
 
-The forthcoming release will also include the experimental "album" mode, an extremely low training but highly robust model that has extremely modest computational requirements in comparision with other contract classification models.
+The forthcoming release will also include the experimental "album" mode, an extremely low training but highly robust model that has very modest computational requirements in comparision with other contract classification models.
 
 ### Sample Datasets
 
@@ -92,7 +92,7 @@ Finally, an experimental Wikipedia scraper is included in the `wikip/` sub-direc
 
 ## Release Notes
 
-* Version 0.1
+* Version 0.2
 
 * real time prediction (`dae predict [MODEL_ID`] is inherited from Timecube auto-regressive framework. Classification data is not "real time" -in the sense it's not time series data- however DAE is able to handle extremely high workloads with extremely low latency.
 
@@ -108,7 +108,7 @@ Finally, an experimental Wikipedia scraper is included in the `wikip/` sub-direc
 
 ### Misc ToDo's
 
-* Move setup.py out of `build/src` intp `build`
+* Move setup.py out of `build/src` into `build`
 * Clean up domain logic & some residual hard coded constants
 * Docker factory which is currently a module, should be a proper factory class.
 * Currently the Docker image is built with the full transform module. Would be nicer if it only included the specific tranforms needed by the trained model.

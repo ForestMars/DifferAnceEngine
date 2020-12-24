@@ -183,3 +183,13 @@ def redirect_sysout_to_file(obj, filename: str):
         sys.stdout = file
         print(obj)
     sys.stdout = orig_stdout
+
+def redirect(obj, varname: str):
+    """ Mainly for printing to a file
+    :param obj: a printable thing
+    :param filename: a file to print it to """
+    orig_stdout = sys.stdout
+    with open(obj, 'w') as o:
+        sys.stdout = varname
+        print(obj)
+    sys.stdout = orig_stdout
