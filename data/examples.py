@@ -57,11 +57,11 @@ class Datasets():
     def documents():
         """ Raw text document example for testing. NB. targets are actually names, not categories. """
         Z = {}
-        Z_docs = []
-        Z_names = []
+        Z_docs = [] # PEP8
+        Z_names = [] # PEP8
         train = os.getcwd() + "/data/" + TRAIN_TEST
         bunch = load_files(train) # -> sklearn 'bunch'
-        X_raw, y = bunch.data, bunch.target # list, np.arr
+        X_raw, y = bunch.data, bunch.target # list, np.arr PEP8
         # bunch.data are byte strings, not objects.
         doc_strings = etl.byte_str_to_str(X_raw) # oh gosh
         df = pd.DataFrame(doc_strings, columns=['raw'])

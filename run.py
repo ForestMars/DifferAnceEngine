@@ -13,10 +13,11 @@ from sklearn.model_selection import train_test_split
 from common import cli, utils
 from dae import *
 from lib.ext.estimators import Estimator
-#from lib.ext.pipes import Pipe, ClassifierPipes
+
+from lib.ext.pipes import Pipe, ClassifierPipes
 from lib.ext.scoring import Score, score_predict, save_score, load_report
-#import shim
-from build.src.pipes import Pipe, ClassifierPipes
+#from build.src.pipes import Pipe, ClassifierPipes
+
 
 args = cli.get_args(sys.argv)
 

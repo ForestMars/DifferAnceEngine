@@ -6,8 +6,8 @@ current_domain = ''
 
 # create domain
 class Feature(object):
-    __init__(self):
-    pass
+    def __init__(self):
+        pass
 
     def create(name: str, input_feature: str, trasform: str)->'status':
         """ Declatively define a new feature and add as a pipe. """
@@ -46,11 +46,12 @@ class FeaturePipe(object):
 
 
 class Model(object):
-    __init__(self):
-    pass
+    def __init__(self):
+        pass
 
     def create(estimator: str, features: list):
         """ Returns a pipe with given features and estimator. """
+        pass
 
     def get_features(model: str) ->list:
         """ Given a valid model id, returns list of its features. """
@@ -60,8 +61,3 @@ class Model(object):
         """ True is feature is included in the given model. """
         pass
 
-
-
-
-
-"""

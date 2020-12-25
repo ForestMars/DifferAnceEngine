@@ -11,20 +11,18 @@ import time
 import numpy as np
 import pandas as pd
 from nltk.corpus import stopwords
-
 import common.etl
 from common.memo import memo
 from common import utils
 from common.utils import fopen
 from lib.ext import features
-from lib.ext.pipes import Pipe
+#from lib.ext.pipes import Pipe
+from build.src.pipes import Pipe
 from common.lumberjack import Log as log # PEP 8
 
 from api.domain import Domain, get_domains
 
 
-#logger = logging.getLogger()
-#STOPS=stopwords.words('english')
 os.environ['SEED'] = '42'
 
 N_EST=3000
@@ -47,12 +45,11 @@ DOMAIN = 'hackles'
 
 pipe = Pipe() # Pipe should not be instantiated on both sides.
 
-### PREPROCESSING
+# ## PREPROCESSING
 
-
-### FEATURES
-## Explore features based on your amazing intuition - Define feature pipes.
-## @DEBATE: Refactor feature pipes to add each feature, not add UP each feature (rather than cumulative tubes.)
+# ## FEATURES
+# # Explore features based on your amazing intuition - Define feature pipes.
+# # @DEBATE: Refactor feature pipes to add each feature, not add UP each feature (rather than cumulative tubes.)
 
 def _avail_feats():
     """ Read in features from dataset or generate them at runtime with measurements. """
@@ -162,4 +159,5 @@ def x_val():
 
 
 if __name__ == '__main__':
-    print("This is probably not what you want to do. \nThis module only provides gnerators and related helper functions. \nPlease use main module, `run.py`.\n꧁꧅ͮͤ꧂\n")
+    print("This is probably not what you want to do. \nThis module only provides gnerators and related helper functions.")
+    print("Please use main module, `run.py`.\n꧁꧅ͮͤ꧂\n")

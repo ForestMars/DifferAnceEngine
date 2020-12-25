@@ -11,7 +11,7 @@ args = cli.get_args(sys.argv)
 DOMAIN = args.domain or 'hackles' # example domain
 DOCKER_HOST = args.docker_host or '3.12.163.71'
 DOCKER_USER = args.docker_user or 'ubuntu'
-KEY = args.host_key or or None
+KEY = args.host_key or None
 FLASK_PORT = args.port or 5531
 
 DIR = 'images/'

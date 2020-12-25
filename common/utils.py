@@ -17,11 +17,8 @@ try:
 except ImportError:
     import pickle
 
-
-#import logger
-#logger = logging.getLogger(__name__)
+#from common.lumberjack import Log as log # PEP8
 log = print
-
 
 class HaltException(Exception): pass
 
