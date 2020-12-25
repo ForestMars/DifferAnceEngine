@@ -16,8 +16,7 @@ from common.memo import memo
 from common import utils
 from common.utils import fopen
 from lib.ext import features
-#from lib.ext.pipes import Pipe
-from build.src.pipes import Pipe
+from lib.ext.pipes import Pipe
 from common.lumberjack import Log as log # PEP 8
 
 from api.domain import Domain, get_domains
