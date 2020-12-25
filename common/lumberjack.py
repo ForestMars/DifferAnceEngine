@@ -1,19 +1,22 @@
 # lib/logger.py - Logging class and functions for DAE.
 __version__ = '0.1'
 __all__ = ['Log', 'LOG_LEVEL', 'LOG_DIR', 'LOGFILE_NAME']
-#import inspect
+
 import os
 import logging
 import traceback
 
+import common.utils
 
-from common.utils import ddict, mkdir
 
+def make_log_dir():
+    return common.utils.mkdir('logs')
 
 # Sensible defaults
+
 LOG_LEVEL = 'DEBUG'
-LOG_DIR = 'logs/' or mkdir('logs')
-mkdir('logs')
+LOG_DIR = 'logs/' or  make_log_dir()
+
 LOGFILE_NAME = 'debug.log'
 os.system("touch logs/debug.log")
 FORMAT = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -43,7 +46,8 @@ class Log(object):
 
     @staticmethod
     def warn(msg):
-        logger.warn(msg)
+        # logger.warn(msg) # deprecated
+        logger.warning(msg)
 
     @staticmethod
     def debug(msg):

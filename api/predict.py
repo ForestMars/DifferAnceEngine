@@ -47,7 +47,7 @@ def predict(domain, doc):
 # This should be its own class.
 def run(domain)->str:
     """ Run model against prediction set.
-    :param model: """
+    :param domain: active domain. """
 
     domain_model_path = MODELS + '/' + DOMAIN + '/'
     update_model = DOMAIN + '__active_model.pkl'

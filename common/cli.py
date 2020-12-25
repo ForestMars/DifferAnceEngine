@@ -36,9 +36,9 @@ def get_args(argv):
     parser.add_argument('-K', '--host-key', default=None, help='Host key', metavar='KEY')
     parser.add_argument('-D', '--domain', default=None, help='Docker user', metavar='DOMAIN')
     parser.add_argument('-P', '--port', default=None, help='Docker user', metavar='DOMAIN')
-    #parser.add_argument('-a', '--action', action="store", dest='action', default=None, help='', metavar='')
+    # parser.add_argument('-a', '--action', action="store", dest='action', default=None, help='', metavar='')
 
-    #args = parser.parse_args()
+    # args = parser.parse_args()
     args = parser.parse_args(argv[1:])
 
     return args

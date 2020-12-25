@@ -43,6 +43,6 @@ def predict():
 
 
 if __name__ == '__main__':
-        #app.run(host='0.0.0.0', port=FLASK_RUN_PORT, url_scheme='https')
+        # app.run(host='0.0.0.0', port=FLASK_RUN_PORT, url_scheme='https')
         app.run(host='0.0.0.0', port=FLASK_RUN_PORT, debug=True)
         # serve(app, host='0.0.0.0', port=5531) # waitress

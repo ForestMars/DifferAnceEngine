@@ -1,4 +1,4 @@
-# domain.py
+# domain.py - Controller for active domain.
 
 from common import utils
 
@@ -14,7 +14,7 @@ RESULTS = DATA_DIR +'/results'
 MODELS = 'models'
 
 
-## DOMAIN
+# # DOMAIN
 
 class Domain():
     def __init__(self,  domain):
@@ -44,7 +44,7 @@ def get_targets(domain=DOMAIN):
     return utils.get_dir_list(tt)
 targets = get_targets()
 
-## SETUP & CHECKS
+# # SETUP & CHECKS
 def make_targets(domain=DOMAIN, targets: list=None, set='result_set'):
     """ Check if domain exists in stream. (eg. file system directory, kafka topic, etc.)
     :param domain: (str) the lexical problem space
@@ -106,14 +106,6 @@ def create_feat_pipe(feats: list):
     """ Creates a feature pipe when given a post request with a list of features. """
     # Return status
     pass
-
-
-
-
-
-
-
-
 
 
 # create etc domain

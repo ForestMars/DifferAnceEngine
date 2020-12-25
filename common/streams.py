@@ -117,14 +117,14 @@ class Kafka(Stream):
         super(Kafka, self).__init__()
 
     def client(group,host,topic):
-        return KafkaClient('0.0.0.0:9092')
+        return KafkaClient('0.0.0.0:9092') # deprecated
 
     def kafka_consumer(id,group,host):
         #auto_offset_reset='earliest'
         return KafkaConsumer(id,group,host)
 
     def simple_consumer():
-        consumer = SimpleConsumer(kafka, 'group', sys.argv[1])
+        consumer = SimpleConsumer(kafka, 'group', sys.argv[1]) # deprecated class
         consumer.max_buffer_size=0
         consumer.seek(0,2) # Most recent, not stream begin
         return consumer

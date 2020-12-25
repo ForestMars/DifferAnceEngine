@@ -17,8 +17,9 @@ try:
 except ImportError:
     import pickle
 
-#from common.lumberjack import Log as log # PEP8
-log = print
+import common.lumberjack
+log = common.lumberjack.Log()
+
 
 class HaltException(Exception): pass
 
@@ -83,7 +84,7 @@ def mkdir(path, dir=None):
             os.mkdir(path + '/' + dir)
         except Exception as e:
             # @TODO: Only create directories if they don't already exist.
-            pass
+            log(e)
     else:
         if not os.path.isdir(path):
             try:
@@ -184,7 +185,7 @@ def redirect_sysout_to_file(obj, filename: str):
 def redirect(obj, varname: str):
     """ Mainly for printing to a file
     :param obj: a printable thing
-    :param filename: a file to print it to """
+    :param varname: a target to print it to """
     orig_stdout = sys.stdout
     with open(obj, 'w') as o:
         sys.stdout = varname
