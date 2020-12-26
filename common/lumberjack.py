@@ -10,13 +10,11 @@ import common.utils
 
 
 def make_log_dir():
-    return common.utils.mkdir('logs')
+    return common.utils.mkdir('logs') # remove dependency.
 
 # Sensible defaults
-
 LOG_LEVEL = 'DEBUG'
 LOG_DIR = 'logs/' or  make_log_dir()
-
 LOGFILE_NAME = 'debug.log'
 os.system("touch logs/debug.log")
 FORMAT = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -69,7 +67,8 @@ def log(logmsg, lvl='INFO', e=None):
 """
 # Flask config loader.
 except Exception as e:
-    log("Error finding or loading DevelopmentConfig object. You probably need to specify package since Python 3 dropped support for relative import. (See PEP 8)", e)
+    log("Error finding or loading DevelopmentConfig object. \
+    You probably need to specify package since Python 3 dropped support for relative import. (See PEP 8)", e)
     try:
         app.config.from_pyfile('config.py')
         log("Loaded configuration from file")

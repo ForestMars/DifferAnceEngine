@@ -11,13 +11,13 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 from Crypto.Cipher import AES
-#from Crypto.Random import get_random_bytes
-#from Crypto.Hash import HMAC, SHA, SHA256, SHA384, SHA512
+# from Crypto.Random import get_random_bytes
+# from Crypto.Hash import HMAC, SHA, SHA256, SHA384, SHA512
 
 
 SALT_SIZE = 22
 SHA = 'SHA256'
-#SHA = 'SHA512'
+# SHA = 'SHA512'
 
 # Are pickles kosher?
 if 'DILL' in os.environ:
