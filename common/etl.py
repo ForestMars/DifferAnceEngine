@@ -16,7 +16,7 @@ def byte_str_to_str(blobs):
 
     return docs
 
-
+# This should all be in a pipe, so this function is likely not used (or needed) at all. 
 def clean_dox(blobs: list) ->list:
     " Given a list of text blobs, returns a cleaned version"
     docs = []

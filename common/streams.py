@@ -6,7 +6,7 @@ from os.path import isfile, join
 from glob import glob
 import pickle
 from pymemcache.client import base
-from kafka import KafkaClient, KafkaConsumer, SimpleConsumer
+from kafka import KafkaClient, KafkaConsumer, SimpleConsumer # Some of this is deprecated in upcoming Kafka release.
 
 # @Deprecated
 #PICKLE_DIR = 'pickles/'

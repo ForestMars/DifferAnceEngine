@@ -38,7 +38,7 @@ The main intents behind DifferAnce Engine (besides building a framework that has
 
 Scalability of the computationally expensive parameter optimizations is not handled by DifferAnce Engine, but is offloaded to the Fast ML pipeline, which takes care of parallelizing the processes and auto-scaling as needed.
 
-The pipe factory changes the convention of of naming things after their labels (ie.`make_pipeline`) in favour of naming them after the hash of their functors. This allows for their names to freely (and arbitrarily) change, while maintaining the integrity of the object itself that’s being passed.
+The pipe factory changes the convention of of naming things after their labels (`make_pipeline` I'm looking at you) in favour of naming them after the hash of their functors. This allows for their names to freely (and arbitrarily) change, while maintaining the integrity of the object itself that’s being passed.
 
 
 ## BUILD

@@ -1,10 +1,9 @@
 # utils.py - Commonly used helper functions to handle mundane operations safely.
-__version__ = '0.2.4'
+__version__ = '0.2'
 
 import csv
 import hashlib
 import json
-import magic
 import os
 import subprocess # Currently used only with Hadoop.
 import sys
@@ -18,7 +17,8 @@ try:
 except ImportError:
     import pickle
 
-#from common.lumberjack import Log as log
+import common.lumberjack
+log = common.lumberjack.Log()
 
 
 class HaltException(Exception): pass
@@ -26,33 +26,33 @@ class HaltException(Exception): pass
 class ContextManager_(_GeneratorContextManager, ContextDecorator): pass
 
 class ddict(dict):
-    """ dot.notation for dicts using non-standard class name. """
+    """ dot.notation for dicts """
     __getattr__ = dict.get
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 
 
-# Decorator for writing to filesystem. Can we put this in a class pls?
+# Decorator for writing to filesystem.
 def exists(func):
     @wraps(func)
-    def inner(*args, **kwgs):
+    def inner(*args, **kwds):
         filepath = args[0]
         wrb = args[1]
         path = os.path.split(filepath)[0]
         if path is None:
-            return ContextManager_(func, args, kwgs)
+            return ContextManager_(func, args, kwds)
         if path_exists(path):
             if isdir(path):
-                return ContextManager_(func, args, kwgs)
+                return ContextManager_(func, args, kwds)
             else: # target is not a directory.
                 # raise
-                log.error('nocando.')
+                log('nocando.')
         else: # directory doesn't exist; creating.
             try:
                 mkdir(path)
             except Exception as e:
-                log.error(e)
-        return ContextManager_(func, args, kwgs)
+                log(e)
+        return ContextManager_(func, args, kwds)
     return inner
 
 @exists
@@ -60,35 +60,6 @@ def fopen(filepath, mode):
     file = open(filepath, mode)
     yield file
     file.close()
-
-def csv_to_dict(file):
-    """ write key val csv to dict. """
-    #mydict = {y[0]: y[1] for y in [x.split(",") for x in open(file).read().split('\n') if x]}
-    with open(file) as f:
-        d = dict(filter(None, csv.reader(f)))
-
-    return d
-
-# @FIXME: THis should really check for duplcate keys before committing.
-def rev_dict(dict):
-    """ In node.js, this would be a module. """ # 🤣
-    inv_dict = {v: k for k, v in dict.items()}
-
-    return inv_dict
-
-
-def dict_to_csv(d, file):
-    with open(file, 'w') as f:
-        for key in d.keys():
-            f.write("%s,%s\n"%(key, d[key]))
-
-
-def dict_to_csv_(d, file):
-    """ Saves dictionary to a csv with 1 row for keys and 1 row for values. """
-    with open(file, 'w') as f:
-        w = csv.DictWriter(f, d.keys())
-        w.writeheader()
-        w.writerow(d)
 
 
 ## file system utilities
@@ -113,14 +84,15 @@ def mkdir(path, dir=None):
             os.mkdir(path + '/' + dir)
         except Exception as e:
             # @TODO: Only create directories if they don't already exist.
-            log.error(e)
+            log(e)
     else:
         if not os.path.isdir(path):
             try:
                 Path(path).mkdir(parents=True, exist_ok=True)
             except Exception as e:
-                log.error(e)
+                print('error')
                 # @TODO: Only create directories if they don't already exist.
+                pass
 
 def file_util(file: str, dir: str='.'):
     """ Placeholder for file utility """
@@ -132,12 +104,12 @@ def read_file(file: str, dir: str='.'):
 
 def write_file(contents, file: str, dir: str='.'):
     # @TODO: parse filepath
-    f = fopen("file", "rw")
+    f = open("file", "rw")
     f.write(contents)
     f.close()
 
 def append_file(contents, file: str, dir: str='.'):
-    f = fopen(file, "a")
+    f = open(file, "a")
     f.write(contents)
     f.close()
 
@@ -210,32 +182,12 @@ def redirect_sysout_to_file(obj, filename: str):
         print(obj)
     sys.stdout = orig_stdout
 
-def id_mime_type(file):
-    mime = magic.Magic(mime=True)
-    mimetype = mime.from_file(file)
-    return mimetype
-
-def id_file_type(file):
-    filetypes = ddict(
-        jpg = ['FF', 'D8'], # N.B.
-        png = ['89', '50'],
-        pdf = ['25', '50'],
-        zip = ['50', '4B'],
-        off = ['D0', 'CF'], # MSOffice incl. .doc, .xls, .ppt
-        docx = ['50', '4B'], # incl. xlsx, pptx, odp, pds, odt...
-    )
-    # n.b. filepath not file
-    with open(filepath, 'r') as fp:
-        hex_list = ["{:02x}".format(ord(c)) for c in fp.read()]
-
-def const_equal(a: str, b: str) -> bool:
-    """ Constant time string compare (mainly for v large docs.) """
-
-    if len(a) != len(b):
-        return False
-
-    result = True
-    for i in range(len(a)):
-        result &= (a[i] == b[i])
-
-    return result
+def redirect(obj, varname: str):
+    """ Mainly for printing to a file
+    :param obj: a printable thing
+    :param varname: a target to print it to """
+    orig_stdout = sys.stdout
+    with open(obj, 'w') as o:
+        sys.stdout = varname
+        print(obj)
+    sys.stdout = orig_stdout

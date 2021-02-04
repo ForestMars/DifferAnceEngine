@@ -19,7 +19,7 @@ from lib.ext import features
 from lib.ext.pipes import Pipe
 from common.lumberjack import Log as log  # PEP 8
 
-# from api.domain import Domain, get_domains
+from api.domain import Domain, get_domains
 
 
 os.environ['SEED'] = '42'
