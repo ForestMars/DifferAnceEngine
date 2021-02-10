@@ -73,7 +73,7 @@ To run DAE from the command line the first argument will be the mode name you wi
 
 ### Candidates
 
-DifferAnce Engine has been successfully used as a resumé sorting system for machine learning engineering candidates. You can try it out for yourself: [Candidates](https://github.com/ForestMars/Candidates).
+DifferAnce Engine has been successfully used as a resumé sorting system for machine learning engineering candidates. ~~You can try it out for yourself: [Candidates](https://github.com/ForestMars/Candidates).~~ (Repository is now private.)
 
 ### Contract Analysis
 
